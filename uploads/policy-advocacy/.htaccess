@@ -1,0 +1,11 @@
+# Public image assets for the Policy Advocacy homepage section.
+
+Options -Indexes
+
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>

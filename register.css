@@ -1,0 +1,814 @@
+:root {
+  --ink: #1c1008;
+  --nav: #2f201a;
+  --gold-a: #b37c51;
+  --gold-b: #eedea0;
+  --muted: #b7a58e;
+  --text: #ffffff;
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: clip;
+  background: #261810;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100dvh;
+  background: #261810;
+  color: var(--text);
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+  overflow-x: clip;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.registration-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: #261810;
+}
+
+.registration-topbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding:
+    max(8px, env(safe-area-inset-top, 0px))
+    max(16px, env(safe-area-inset-right, 0px))
+    8px
+    max(16px, env(safe-area-inset-left, 0px));
+  border-bottom: 1px solid rgba(238, 222, 160, 0.12);
+  background: #261810;
+}
+
+.registration-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 36px;
+  padding: 6px 10px 6px 2px;
+  border-radius: 999px;
+  color: var(--gold-b);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.registration-back:hover,
+.registration-back:focus-visible {
+  background: rgba(179, 124, 81, 0.16);
+  outline: none;
+}
+
+.registration-shell {
+  flex: 1;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding:
+    0
+    max(16px, env(safe-area-inset-right, 0px))
+    max(24px, env(safe-area-inset-bottom, 0px))
+    max(16px, env(safe-area-inset-left, 0px));
+}
+
+.registration-intro {
+  padding: 16px 4px 14px;
+  text-align: center;
+}
+
+.registration-intro h1 {
+  margin: 0 0 6px;
+  font-size: clamp(22px, 5vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+}
+
+.registration-intro p {
+  margin: 0 auto;
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.registration-fee {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px !important;
+  padding: 8px 14px;
+  border: 1px solid rgba(238, 222, 160, 0.22);
+  border-radius: 999px;
+  background: rgba(179, 124, 81, 0.14);
+  color: var(--gold-b);
+  font-size: 13px;
+}
+
+.registration-fee strong {
+  color: #fff;
+  font-size: 15px;
+}
+
+.registration-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.form-field {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid rgba(238, 222, 160, 0.16);
+  border-radius: 12px;
+  background: rgba(12, 7, 4, 0.55);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-field:hover {
+  border-color: rgba(238, 222, 160, 0.3);
+  background: rgba(12, 7, 4, 0.72);
+}
+
+.form-field:focus-within {
+  border-color: rgba(238, 222, 160, 0.55);
+  background: rgba(12, 7, 4, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.form-field-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.form-field:focus-within .form-field-label {
+  color: var(--gold-b);
+}
+
+.form-field--full {
+  grid-column: 1 / -1;
+}
+
+.form-field input {
+  width: 100%;
+  min-height: 38px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.form-field input::placeholder {
+  color: rgba(183, 165, 142, 0.45);
+}
+
+.form-field-hint {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.form-field-hint.is-success {
+  color: #9fddb0;
+}
+
+.form-field-hint.is-warning {
+  color: #ffd89a;
+}
+
+.form-field-hint.is-loading {
+  color: var(--gold-b);
+}
+
+.form-field.is-loading .form-field-label::after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 6px;
+  border: 1.5px solid rgba(238, 222, 160, 0.25);
+  border-top-color: var(--gold-b);
+  border-radius: 50%;
+  vertical-align: -1px;
+  animation: pincode-spin 0.7s linear infinite;
+}
+
+@keyframes pincode-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.registration-action {
+  padding: 10px 0 0;
+}
+
+.registration-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 20px;
+  border: 2px solid #a77248;
+  border-radius: 999px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--gold-a), var(--gold-b) 50%, var(--gold-a));
+  background-size: 200% 100%;
+  animation: goldShift 4s linear infinite;
+  transition: transform 0.2s ease;
+}
+
+.registration-submit:active {
+  transform: scale(0.98);
+}
+
+.registration-submit-icon {
+  width: 18px;
+  height: 18px;
+}
+
+@keyframes goldShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.toast {
+  position: fixed;
+  bottom: max(72px, calc(58px + env(safe-area-inset-bottom, 0px)));
+  left: 50%;
+  z-index: 2100;
+  width: min(calc(100% - 32px), 420px);
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--gold-b);
+  color: #000;
+  font-weight: 700;
+  text-align: center;
+  transform: translateX(-50%) translateY(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (min-width: 600px) {
+  .registration-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .registration-fields .form-field--full,
+  .registration-fields .reg-otp-panel {
+    grid-column: 1 / -1;
+  }
+
+  .registration-intro {
+    padding-top: 20px;
+    padding-bottom: 16px;
+  }
+
+  .login-page .registration-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-shell {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-bottom: max(32px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .login-page .registration-shell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    min-height: calc(100dvh - 56px);
+  }
+
+  .registration-intro {
+    padding-top: 12px;
+    padding-bottom: 14px;
+  }
+
+  .registration-intro h1 {
+    font-size: 24px;
+  }
+
+  .registration-intro p {
+    max-width: none;
+    font-size: 14px;
+    line-height: 1.55;
+    padding: 0 2px;
+  }
+
+  .login-verification-note {
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 0 4px;
+  }
+
+  .login-page .registration-form {
+    padding: 16px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(238, 222, 160, 0.12);
+    background: rgba(12, 7, 4, 0.32);
+  }
+
+  .registration-fields {
+    gap: 12px;
+    padding-bottom: 10px;
+  }
+
+  .form-field {
+    padding: 12px 14px;
+  }
+
+  .form-field input,
+  .reg-inline-field input {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .reg-otp-panel {
+    padding: 12px 14px;
+  }
+
+  .reg-otp-btn {
+    min-height: 50px;
+  }
+
+  .registration-submit {
+    min-height: 50px;
+    padding: 12px 20px;
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .registration-back {
+    min-height: 44px;
+    padding: 8px 12px 8px 4px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .user-alert {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .login-otp-hint {
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(12, 7, 4, 0.45);
+    border: 1px solid rgba(238, 222, 160, 0.1);
+  }
+
+  .login-change-mobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(179, 124, 81, 0.14);
+  }
+
+  .login-resend-row {
+    margin-top: 16px;
+  }
+
+  .login-resend-btn {
+    min-height: 44px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(179, 124, 81, 0.12);
+  }
+
+  .user-login-note {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .registration-intro h1 {
+    font-size: 22px;
+  }
+
+  .login-otp-hint strong {
+    display: block;
+    margin: 6px 0 2px;
+    word-break: break-all;
+  }
+
+  .login-change-mobile {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .login-page .registration-form {
+    padding: 14px 12px;
+  }
+}
+
+.user-alert {
+  margin: 0 4px 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.user-alert-error {
+  border: 1px solid rgba(255, 120, 120, 0.35);
+  background: rgba(120, 24, 24, 0.35);
+  color: #ffc9c9;
+}
+
+.user-alert-success {
+  border: 1px solid rgba(120, 200, 140, 0.35);
+  background: rgba(24, 80, 48, 0.35);
+  color: #c9ffd4;
+}
+
+.user-login-note {
+  margin: 18px 4px 0;
+  padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.user-login-note a {
+  color: var(--gold-b);
+  font-weight: 700;
+}
+
+.login-verification-note {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.login-step[hidden] {
+  display: none;
+}
+
+.login-otp-hint {
+  margin: 0 4px 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.login-otp-hint strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.login-change-mobile,
+.login-resend-btn {
+  border: 0;
+  background: none;
+  color: var(--gold-b);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.login-change-mobile:hover,
+.login-change-mobile:focus-visible,
+.login-resend-btn:hover:not(:disabled),
+.login-resend-btn:focus-visible:not(:disabled) {
+  text-decoration: underline;
+  outline: none;
+}
+
+.login-resend-btn:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.login-resend-row {
+  margin: 12px 4px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.login-resend-timer {
+  display: block;
+  margin-top: 6px;
+}
+
+.user-alert[hidden] {
+  display: none;
+}
+
+/* Login page */
+.registration-form {
+  width: 100%;
+}
+
+.login-page .registration-fields {
+  grid-template-columns: 1fr;
+}
+
+.login-page #login-otp {
+  text-align: center;
+  letter-spacing: 0.28em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.login-change-mobile,
+.login-resend-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.registration-topbar {
+  justify-content: space-between;
+}
+
+.user-logout-link {
+  min-height: 36px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--gold-b);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-logout-link:hover,
+.user-logout-link:focus-visible {
+  background: rgba(179, 124, 81, 0.16);
+  outline: none;
+}
+
+.user-dashboard-card {
+  margin-bottom: 14px;
+  padding: 16px 14px;
+  border: 1px solid rgba(238, 222, 160, 0.16);
+  border-radius: 16px;
+  background: rgba(12, 7, 4, 0.55);
+}
+
+.user-dashboard-card-title {
+  margin: 0 0 12px;
+  color: var(--gold-b);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.user-dashboard-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.user-dashboard-list div {
+  display: grid;
+  gap: 2px;
+}
+
+.user-dashboard-list dt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.user-dashboard-list dd {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.user-dashboard-copy {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.user-dashboard-link {
+  text-decoration: none;
+}
+
+.user-dashboard-text-link {
+  color: var(--gold-b);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.user-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-status-paid {
+  background: rgba(72, 160, 96, 0.2);
+  color: #b8f0c8;
+}
+
+.user-status-pending {
+  background: rgba(179, 124, 81, 0.2);
+  color: var(--gold-b);
+}
+
+.user-status-failed {
+  background: rgba(160, 72, 72, 0.2);
+  color: #ffc9c9;
+}
+
+/* Registration mobile OTP */
+.reg-otp-panel {
+  display: grid;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(238, 222, 160, 0.16);
+  border-radius: 12px;
+  background: rgba(12, 7, 4, 0.55);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reg-otp-panel:focus-within {
+  border-color: rgba(238, 222, 160, 0.55);
+  background: rgba(12, 7, 4, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.reg-otp-panel .user-alert {
+  margin: 0;
+}
+
+.reg-otp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: end;
+}
+
+.reg-otp-resend {
+  margin: 0;
+}
+
+.reg-inline-field {
+  display: grid;
+  gap: 4px;
+}
+
+.reg-inline-field input {
+  width: 100%;
+  min-height: 38px;
+  padding: 10px 12px;
+  border: 1px solid rgba(238, 222, 160, 0.16);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(12, 7, 4, 0.55);
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.3;
+  text-align: center;
+  letter-spacing: 0.28em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reg-inline-field input::placeholder {
+  color: rgba(183, 165, 142, 0.45);
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.reg-inline-field:focus-within input {
+  border-color: rgba(238, 222, 160, 0.55);
+  background: rgba(12, 7, 4, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.reg-inline-field:focus-within .form-field-label {
+  color: var(--gold-b);
+}
+
+.reg-otp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold-a), #8f5d38);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: opacity 0.15s ease, transform 0.2s ease;
+}
+
+.reg-otp-btn:hover:not(:disabled),
+.reg-otp-btn:focus-visible:not(:disabled) {
+  opacity: 0.92;
+  outline: none;
+}
+
+.reg-otp-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.reg-otp-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reg-otp-btn--verify {
+  margin-top: 0;
+}
+
+.registration-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 420px) {
+  .reg-otp-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reg-otp-btn {
+    min-height: 44px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,9 @@
+.env
+debug-4f8b76.log
+storage/logs/*.log
+storage/install.lock
+uploads/*
+!uploads/.htaccess
+!uploads/policy-advocacy/
+!uploads/policy-advocacy/.htaccess
+!uploads/policy-advocacy/.gitkeep

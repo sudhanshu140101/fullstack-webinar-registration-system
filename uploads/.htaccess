@@ -1,0 +1,19 @@
+# Registration uploads stay private (served via admin/download.php).
+# Policy advocacy images are public for the homepage.
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^policy-advocacy/.+\.(jpe?g|png|webp)$ - [L]
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# Prevent PHP execution inside uploads
+<FilesMatch "\.php$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Register — MSME CONNECT Summit 2026</title>
+    <meta
+      name="description"
+      content="Register for MSME CONNECT Summit 2026 — India's premier platform for MSMEs, entrepreneurs, and professionals."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="register.css?v=20260623c" />
+    <link rel="icon" href="images/logo.png" type="image/png" />
+  </head>
+  <body class="registration-page">
+    <header class="registration-topbar">
+      <a class="registration-back" href="index.html" aria-label="Back to home">
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+          <path d="M14 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Back</span>
+      </a>
+    </header>
+
+    <main class="registration-shell">
+      <div class="registration-intro" aria-labelledby="registration-title">
+        <h1 id="registration-title">Registration</h1>
+        <p>Fill in your details below to secure your seat at the summit.</p>
+        <p class="registration-fee" data-registration-fee hidden>
+          <span data-fee-label></span>
+          <strong data-fee-amount></strong>
+        </p>
+      </div>
+
+      <form class="registration-form" data-otp-validity-minutes="5" data-otp-length="6" novalidate>
+        <div class="registration-fields">
+          <label class="form-field form-field--full" for="reg-name">
+            <span class="form-field-label">Full name</span>
+            <input id="reg-name" type="text" name="name" placeholder="Enter your full name" autocomplete="name" minlength="2" maxlength="80" required />
+          </label>
+
+          <label class="form-field form-field--full" for="reg-mobile">
+            <span class="form-field-label">Mobile</span>
+            <input id="reg-mobile" type="tel" name="mobile" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" title="Enter a valid 10-digit Indian mobile number" required />
+          </label>
+
+          <div id="reg-otp-panel" class="reg-otp-panel form-field--full">
+            <div id="reg-otp-alert" class="user-alert user-alert-error" role="alert" hidden></div>
+            <div class="reg-otp-row">
+              <button id="reg-send-otp" class="reg-otp-btn" type="button">
+                <span>Send OTP to verify number</span>
+              </button>
+              <label class="reg-inline-field" for="reg-otp">
+                <span class="form-field-label">Enter OTP</span>
+                <input
+                  id="reg-otp"
+                  type="text"
+                  placeholder="6-digit OTP"
+                  inputmode="numeric"
+                  pattern="[0-9]{6}"
+                  maxlength="6"
+                  autocomplete="one-time-code"
+                />
+              </label>
+            </div>
+            <p class="login-resend-row reg-otp-resend">
+              <button type="button" class="login-resend-btn" id="reg-resend-otp" disabled>Resend OTP</button>
+              <span id="reg-resend-timer" class="login-resend-timer" hidden></span>
+            </p>
+          </div>
+
+          <label class="form-field" for="reg-email">
+            <span class="form-field-label">Email</span>
+            <input id="reg-email" type="email" name="email" placeholder="name@company.com" autocomplete="email" inputmode="email" required />
+          </label>
+          <label class="form-field" for="reg-pincode">
+            <span class="form-field-label">Pincode</span>
+            <input id="reg-pincode" type="text" name="pincode" placeholder="6-digit pincode" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" title="Enter a valid 6-digit pincode" required />
+            <span class="form-field-hint" data-pincode-hint hidden aria-live="polite"></span>
+          </label>
+          <label class="form-field" for="reg-state">
+            <span class="form-field-label">State</span>
+            <input id="reg-state" type="text" name="state" placeholder="Your state" autocomplete="address-level1" minlength="2" maxlength="60" required />
+          </label>
+          <label class="form-field" for="reg-district">
+            <span class="form-field-label">District</span>
+            <input id="reg-district" type="text" name="district" placeholder="Your district" autocomplete="address-level2" minlength="2" maxlength="60" required />
+          </label>
+        </div>
+
+        <div class="registration-action">
+          <button class="registration-submit" type="submit">
+            <span>Register Now</span>
+            <svg class="registration-submit-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <div class="toast" role="status" aria-live="polite">Proceed For The Payment</div>
+
+    <script src="register.js?v=20260623c" defer></script>
+  </body>
+</html>
